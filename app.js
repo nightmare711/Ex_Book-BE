@@ -16,6 +16,6 @@ app.use(bodyParser.json({
 app.use(bookRoute)
 
 
-mongoose.connect('mongodb+srv://tranhoang:BHyyHpfIC3pFWwDA@cluster0.txshp.mongodb.net/myFirstDatabase?retryWrites=true&w=majority').then(() => app.listen(5000, () => {
+mongoose.connect('mongodb+srv://tranhoang:BHyyHpfIC3pFWwDA@cluster0.txshp.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', {useNewUrlParser: true}).then(() => app.listen(5000, () => {
     console.log('App listening on port 4000')
 }))

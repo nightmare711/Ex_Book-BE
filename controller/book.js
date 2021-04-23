@@ -58,28 +58,33 @@ exports.updateBook = (req,res,next) => {
     const email = req.body.email
     const password = req.body.password
     const phoneNumber = req.body.phoneNumber
-    const imgUrl = req.body.imgUrl
+    // const imgUrl = req.body.imgUrl
     const type = req.body.type
     const description = req.body.description
-    
+    console.log(req.body)
     return Book.findById(id).then(book => {
-        if(result) {
+        if(book) {
             book.name = name
             book.email = email
             book.password = password
             book.phoneNumber = phoneNumber
-            book.imgUrl = imgUrl
+            // book.imgUrl = imgUrl
             book.type = type
             book.description = description
-            return book.save().then(result => res.status(200).json({
-                message: 'Successful'
+            return book.save().then(result => res.status(201).json({
+                message: 'Successful',
+                status: 0,
+                result: result
             }))
         }
         return res.status(404).json({
             message:'Can not find'
         })
-    }).catch(err => res.status(500).json({
-        message:'something wrong'
-    }))
+    }).catch(err => {
+        console.log(err)
+        return res.status(500).json({
+            message:'something wrong'
+        })
+    })
 
 }
